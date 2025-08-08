@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PainterEngineSharp.Types;
 
+/// <summary>
+/// px_timestamp
+/// </summary>
 public struct TimeStamp
 {
     public short Year { get; set; }

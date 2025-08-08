@@ -1,18 +1,17 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace PainterEngineSharp.Types;
 
-
+/// <summary>
+/// px_point2D
+/// </summary>
 public struct Point2D<T>
-    where T : IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>
+        where T : INumber<T>
 {
     public T X { get; set; }
     public T Y { get; set; }
@@ -29,9 +28,11 @@ public struct Point2D<T>
 }
 
 
-
+/// <summary>
+/// px_point
+/// </summary>
 public struct Point<T>
-    where T : IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>
+    where T : INumber<T>
 {
     public T X { get; set; }
     public T Y { get; set; }
@@ -51,8 +52,12 @@ public struct Point<T>
     };
 }
 
+/// <summary>
+/// px_point4D
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public struct Point4D<T>
-    where T : IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>
+    where T : INumber<T>
 {
     public T X { get; set; }
     public T Y { get; set; }
@@ -75,15 +80,20 @@ public struct Point4D<T>
     };
 }
 
+/// <summary>
+/// px_plane
+/// </summary>
 public struct Plane
 {
     public Point3D P0 { get; set; }
     public Vector3D Vn { get; set; }
 }
 
-
+/// <summary>
+/// px_rect
+/// </summary>
 public struct Rectangle<T>
-    where T : IAdditionOperators<T, T, T>, ISubtractionOperators<T, T, T>
+    where T : INumber<T>
 {
     public T X { get; set; }
     public T Y { get; set; }
@@ -96,7 +106,11 @@ public struct Rectangle<T>
     }
 }
 
+/// <summary>
+/// px_region
+/// </summary>
 public struct Region<T>
+    where T : INumber<T>
 {
     public T Left { get; set; }
     public T Right { get; set; }

@@ -64,6 +64,10 @@ static class OpjectEventEnumTools
     };
 }
 
+
+/// <summary>
+/// PX_Object_Event
+/// </summary>
 public struct OpjectEvent
 {
     public OpjectEventEnum EventEnum { get; set; }
@@ -338,12 +342,18 @@ public struct OpjectEvent
 
     public EventData Data;
 
+    /// <summary>
+    /// PX_OBJECT_BUILD_EVENT
+    /// </summary>
     public OpjectEvent(OpjectEventEnum eventEnum)
     {
         EventEnum = eventEnum;
         Data.Reset();
     }
 
+    /// <summary>
+    /// PX_OBJECT_BUILD_EVENT_STRING
+    /// </summary>
     public OpjectEvent(OpjectEventEnum eventEnum, string content)
     {
         EventEnum = eventEnum;
@@ -351,6 +361,9 @@ public struct OpjectEvent
         Data.Object = content;
     }
 
+    /// <summary>
+    /// PX_OBJECT_BUILD_EVENT_INT
+    /// </summary>
     public OpjectEvent(OpjectEventEnum eventEnum, int index)
     {
         EventEnum = eventEnum;
@@ -358,18 +371,33 @@ public struct OpjectEvent
         Index = index;
     }
 
+    /// <summary>
+    /// PX_Object_Event_CursorOffset
+    /// </summary>
     public OpjectEvent CursorOffset(Point offset) => EventEnum.IsCursorEvent() ? this with
     {
         CursorX = CursorX + offset.X,
         CursorY = CursorY + offset.Y
     } : this;
 
+    /// <summary>
+    /// PX_Object_Event_ObjectCursorOffset
+    /// </summary>
     public OpjectEvent OpjectCursorOffset(Opject opject)
     {
-        Rectangle region=//
+        Rectangle region = opject.Rect;
+        Point offset=new Point { X=region.X, Y=region.Y };
+        return CursorOffset(offset);
     }
 
+    /// <summary>
+    /// PX_Object_Event_GetCursorX
+    /// </summary>
     public float CursorX { get => Data.Floats[0]; set => Data.Floats[0] = value; }
+
+    /// <summary>
+    /// PX_Object_Event_GetCursorY
+    /// </summary>
     public float CursorY { get => Data.Floats[1]; set => Data.Floats[1] = value; }
 
     public int Index { readonly get => Data.Ints[0]; set => Data.Ints[0] = value; }

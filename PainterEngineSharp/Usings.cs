@@ -13,4 +13,6 @@ global using Rectangle = PainterEngineSharp.Types.Rectangle<float>;
 
 global using Matrix = PainterEngineSharp.Types.Matrix<float>;
 
+global using Complex = PainterEngineSharp.Types.Complex<double>;
+
 namespace PainterEngineSharp;
